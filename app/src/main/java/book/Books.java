@@ -24,14 +24,15 @@ public class Books {
      * @param books 入れ込みたい本の一覧
      */
     public Books(final List<Book> books) {
-        List<Book> notDuplicatedBookList = new ArrayList<>();
-        books.stream().forEach(newBook -> {
-            if (notDuplicatedBookList.stream()
-                    .anyMatch(notDuplicatedBook -> notDuplicatedBook.isSame(newBook))) {
-                return;
-            }
-            notDuplicatedBookList.add(newBook);
-        });
+        final List<Book> notDuplicatedBookList = books.stream().collect(() -> new ArrayList<Book>(),
+                (accumulatedNotDuplicatedBookList, book) -> {
+                    if (accumulatedNotDuplicatedBookList.stream()
+                            .anyMatch(accumulatedNotDuplicatedBook -> accumulatedNotDuplicatedBook
+                                    .isSame(book))) {
+                        return;
+                    }
+                    accumulatedNotDuplicatedBookList.add(book);
+                }, ArrayList::addAll);
 
         this.value = notDuplicatedBookList;
     }
