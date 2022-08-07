@@ -24,8 +24,8 @@ public class Books {
      * @param books 入れ込みたい本の一覧
      */
     public Books(final List<Book> books) {
-        final List<Book> notDuplicatedBookList = books.stream().collect(() -> new ArrayList<Book>(),
-                (accumulatedNotDuplicatedBookList, book) -> {
+        final List<Book> notDuplicatedBookList =
+                books.stream().collect(ArrayList::new, (accumulatedNotDuplicatedBookList, book) -> {
                     if (accumulatedNotDuplicatedBookList.stream()
                             .anyMatch(accumulatedNotDuplicatedBook -> accumulatedNotDuplicatedBook
                                     .isSame(book))) {
