@@ -43,7 +43,7 @@ public class Books {
      * @return 本が追加されたBooksクラス
      */
     public Books add(final Books newBooks) {
-        List<Book> notExistingNewBookList = newBooks.value.stream()
+        final List<Book> notExistingNewBookList = newBooks.value.stream()
                 .filter(newBook -> !this.alreadyInList(newBook)).collect(Collectors.toList());
 
         return new Books(Stream.concat(this.value.stream(), notExistingNewBookList.stream())
@@ -74,7 +74,7 @@ public class Books {
      * @return インデクスに合った本
      * @throws IllegalArgumentException 本が存在しなかったら例外
      */
-    public Book takeOut(int index) {
+    public Book takeOut(final int index) {
         if (index >= this.value.size()) {
             throw new IllegalArgumentException(String.format("%d番目の本は存在しません。", index));
         }

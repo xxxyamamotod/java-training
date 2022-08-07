@@ -13,7 +13,7 @@ public class Book {
      * @param title タイトル
      * @param author 著者
      */
-    public Book(String title, String author) {
+    public Book(final String title, final String author) {
         this.title = title;
         this.author = author;
     }
@@ -42,7 +42,7 @@ public class Book {
      * @param other チェック対象
      * @return 同じ本であるか
      */
-    public boolean isSame(Book other) {
+    public boolean isSame(final Book other) {
         return this.title == other.title && this.author == other.author;
     }
 }
